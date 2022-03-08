@@ -7,3 +7,10 @@
 *.iml
 out
 gen
+
+.mvn
+*.md
+mvnw
+mvnw.cmd
+
+target
