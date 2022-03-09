@@ -1,6 +1,5 @@
 package com.example.springbootproject.transaction;
 
-import lombok.extern.log4j.Log4j;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.support.DefaultTransactionStatus;
