@@ -1,7 +1,5 @@
 package com.example.springbootproject;
 
-import com.example.springbootproject.entity.User;
-import com.example.springbootproject.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
         classes = SpringBootProjectApplication.class)
 @AutoConfigureMockMvc
 class SpringBootProjectApplicationTests {
-    @Autowired
-    private UserMapper userMapper;
 
     @Autowired
     DataSourceTransactionManager dataSourceTransactionManager;
@@ -42,16 +38,6 @@ class SpringBootProjectApplicationTests {
         //最好是放在catch 里面,防止程序异常而事务一直卡在哪里未提交
         dataSourceTransactionManager.rollback(transactionStatus);
 
-        User user = new User();
-        user.setName("user1");
-        int insert = userMapper.insert(user);
-//        if (insert > 0) {
-//            throw new NullPointerException("null");
-//        }
-
-        User user2 = new User();
-        user2.setName("user2");
-        userMapper.insert(user2);
     }
 
 }

@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootApplication
-@MapperScan("com.example")//dao层目录
+@MapperScan("com.example.springbootproject.mapper")//dao层目录
 @EnableTransactionManagement
 public class SpringBootProjectApplication {
 

@@ -20,6 +20,12 @@ public class MyDataSourceTransactionManager extends DataSourceTransactionManager
     }
 
     @Override
+    protected Object doGetTransaction() {
+        System.out.println("doGetTransaction:{}"+Thread.currentThread().getId());
+        return super.doGetTransaction();
+    }
+
+    @Override
     protected void doCommit(DefaultTransactionStatus status) {
 
         System.out.println("doCommit:{}"+Thread.currentThread().getId());
