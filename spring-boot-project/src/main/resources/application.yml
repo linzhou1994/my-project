@@ -12,6 +12,9 @@ spring:
         url: jdbc:mysql://124.221.168.242:3306/test
         driver-class-name: com.mysql.jdbc.Driver
 
+    redis:
+        url: redis//124.221.168.242:6379
+
 
 mybatis:
     mapper-locations: classpath:mapper/*Mapper.xml
