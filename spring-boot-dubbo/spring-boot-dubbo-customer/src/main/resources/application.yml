@@ -1,0 +1,14 @@
+
+server:
+  port: 8888 #Tomcat??
+spring:
+  dubbo:
+    application:
+      name: springboot-dubbo-demo2 #???
+    registry:
+      address: zookeeper://124.221.168.242 #zookeeper??
+      port: 2181 #???????
+    protocol:
+      name: dubbo
+      port: 20891 #dubbo???????
+    scan: com.example #?????

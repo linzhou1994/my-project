@@ -11,6 +11,7 @@
     <modules>
         <module>java-project</module>
         <module>spring-boot-project</module>
+        <module>spring-boot-dubbo</module>
     </modules>
 
 
