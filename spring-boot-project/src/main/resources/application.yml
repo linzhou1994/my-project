@@ -4,18 +4,38 @@ server:
         context-path: /my
 
 
-
+#
 spring:
-    datasource:
-        username: root
-        password: 19941029lz09
-        url: jdbc:mysql://124.221.168.242:3306/test
-        driver-class-name: com.mysql.jdbc.Driver
+    profiles:
+        active: dev
+#    datasource:
+#        username: root
+#        password: 19941029lz09
+#        url: jdbc:mysql://124.221.168.242:3306/test
+#        driver-class-name: com.mysql.jdbc.Driver
+#
+#    redis:
+#        url: redis//124.221.168.242:6379
+#
+#
+#mybatis:
+#    mapper-locations: classpath:mapper/*Mapper.xml
+#    type-aliases-package: com.example
 
-    redis:
-        url: redis//124.221.168.242:6379
 
 
-mybatis:
-    mapper-locations: classpath:mapper/*Mapper.xml
-    type-aliases-package: com.example
+
+
+
+#Apollo 配置
+app:
+    id: myProjectDubbo
+apollo:
+#    cacheDir: /opt/data/                       #配置本地配置缓存目录
+#    cluster: default                           #指定使用哪个集群的配置
+    meta: http://124.221.168.242:8080
+#    autoUpdateInjectedSpringProperties: true   #是否开启 Spring 参数自动更新
+    bootstrap:
+        enabled: true
+        eagerLoad:
+            enabled: false
