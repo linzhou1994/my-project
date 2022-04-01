@@ -12,3 +12,5 @@ spring:
       name: dubbo
       port: 20891 #dubbo???????
     scan: com.example #?????
+    consumer:
+      filter: dubboLogFilter

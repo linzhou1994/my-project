@@ -12,3 +12,7 @@ spring:
       name: dubbo
       port: 20890 #dubbo???????
     scan: com.example.springbootdubbpbiz.remoteapi.impl #?????
+
+
+    provider:
+      filter: dubboLogFilter
