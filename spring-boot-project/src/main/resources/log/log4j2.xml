@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="120 seconds">
+    <appender name="FILE_TEST" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/Users/jiumeng/log/jingwei.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>/Users/jiumeng/log/%d{yyyy-MM-dd}/jingwei.%d{yyyy-MM-dd}.%i.gz
+            </fileNamePattern>
+            <maxFileSize>512MB</maxFileSize>
+            <!-- keep 7 days' worth of history capped at 5GB total size -->
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>5GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - TRACE_ID=%X{TRACE_ID} %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - TRACE_ID=%X{TRACE_ID} %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="FileTest" level="INFO">
+        <appender-ref ref="FILE_TEST"/>
+    </logger>
+
+    <logger name="console" level="INFO">
+        <appender-ref ref="console"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
