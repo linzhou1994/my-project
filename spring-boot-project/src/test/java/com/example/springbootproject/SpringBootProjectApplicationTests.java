@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.BoundValueOperations;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -25,6 +27,8 @@ class SpringBootProjectApplicationTests {
     DataSourceTransactionManager dataSourceTransactionManager;
     @Autowired
     TransactionDefinition transactionDefinition;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     @Test
     @Rollback(false)
@@ -37,6 +41,15 @@ class SpringBootProjectApplicationTests {
         dataSourceTransactionManager.commit(transactionStatus);
         //最好是放在catch 里面,防止程序异常而事务一直卡在哪里未提交
         dataSourceTransactionManager.rollback(transactionStatus);
+
+    }
+
+    @Test
+    public void redisTest() {
+        BoundValueOperations<String, String> operations = stringRedisTemplate.boundValueOps("linzhou");
+        operations.set("帅");
+
+        System.out.println(operations.get());
 
     }
 

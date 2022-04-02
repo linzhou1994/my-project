@@ -13,9 +13,10 @@ spring:
         password: 19941029lz09
         url: jdbc:mysql://124.221.168.242:3306/test
         driver-class-name: com.mysql.jdbc.Driver
-#
-#    redis:
-#        url: redis//124.221.168.242:6379
+
+    redis:
+        host: 124.221.168.242
+        port: 6379
 
 
 mybatis:
