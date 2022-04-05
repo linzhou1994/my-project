@@ -3,7 +3,10 @@ package com.example.springbootproject.controller;
 import com.example.springbootproject.entity.UserEntity;
 import com.example.springbootproject.mapper.UserMapper;
 import com.example.springbootproject.service.UserService;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,6 +54,12 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class UserController {
 
     @Autowired
+    private RedissonClient redissonClient;
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
@@ -63,7 +72,12 @@ public class UserController {
     }
     @RequestMapping("set2")
     public int setUser2(String name) {
-
-        return userService.setUser2(name);
+        RLock lock = redissonClient.getLock("123456");
+        lock.lock();
+        try {
+            return userService.setUser(name);
+        }   finally {
+            lock.unlock();
+        }
     }
 }

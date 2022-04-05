@@ -14,10 +14,21 @@ spring:
         url: jdbc:mysql://124.221.168.242:3306/test
         driver-class-name: com.mysql.jdbc.Driver
 
+#    redis:
+#        host: 124.221.168.242
+#        port: 6379
+#        password: linzhou
     redis:
-        host: 124.221.168.242
-        port: 6379
-        password: linzhou
+        redisson:
+            # 配置单点模式
+            config: classpath:redisson.yml
+        jedis:
+            pool:
+                max-active: 8  #最大连接数
+                max-wait: 3 #最大阻塞等待时间(负数表示没限制)
+                max-idle: 8 #最大空闲
+
+
 
 
 mybatis:
