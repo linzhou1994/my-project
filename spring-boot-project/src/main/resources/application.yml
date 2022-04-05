@@ -17,6 +17,7 @@ spring:
     redis:
         host: 124.221.168.242
         port: 6379
+        password: linzhou
 
 
 mybatis:
