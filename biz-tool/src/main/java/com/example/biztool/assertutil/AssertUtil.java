@@ -81,6 +81,13 @@ public class AssertUtil {
         }
     }
 
+    public static void throwException(ErrorCode code, Object... org) throws BizException {
+        String errorMsg = getErrorMsg(code.getMsg(), org);
+        BizException bizException = new BizException(errorMsg).setCode(code.getCode());
+        LOGGER.warn("", bizException);
+        throw bizException;
+    }
+
     public static String getErrorMsg(String str, Object... objects) {
         String rlt = str;
         if (objects != null) {

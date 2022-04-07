@@ -39,6 +39,7 @@ package com.example.biztool.assertutil;
  */
 public class ErrorCode {
     public static final ErrorCode DEFAULT_ERROR= new ErrorCode("000000","系统未知异常");
+    public static final ErrorCode REQUEST_FREQUENTLY= new ErrorCode("999999","请求过于频繁");
     private String code;
     private String msg;
 

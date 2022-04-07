@@ -1,5 +1,7 @@
 package com.example.biztool.exception;
 
+import com.example.biztool.assertutil.ErrorCode;
+
 /**
  * ////////////////////////////////////////////////////////////////////
  * //                          _ooOoo_                               //
@@ -43,6 +45,11 @@ public class BizException extends Exception{
 
     public BizException(String message) {
         super(message);
+    }
+    public BizException(ErrorCode errorCode) {
+        super(errorCode.getMsg());
+        this.code = errorCode.getCode();
+        this.msg = errorCode.getMsg();
     }
 
     public String getCode() {
