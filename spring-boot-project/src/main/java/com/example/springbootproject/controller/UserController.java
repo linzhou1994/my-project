@@ -1,5 +1,6 @@
 package com.example.springbootproject.controller;
 
+import com.example.springbootproject.entity.User2Entity;
 import com.example.springbootproject.entity.UserEntity;
 import com.example.springbootproject.mapper.UserMapper;
 import com.example.springbootproject.service.UserService;
@@ -9,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import java.util.List;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -66,7 +70,7 @@ public class UserController {
     private UserMapper userMapper;
 
     @RequestMapping("set")
-    public int setUser(String name) {
+    public int setUser(@RequestParam("name") String name) {
 
         return userService.setUser(name);
     }
@@ -76,6 +80,16 @@ public class UserController {
         lock.lock();
         try {
             return userService.setUser(name);
+        }   finally {
+            lock.unlock();
+        }
+    }
+    @RequestMapping("getByName")
+    public List<User2Entity> getByName(@RequestParam("name")String name) {
+        RLock lock = redissonClient.getLock("123456");
+        lock.lock();
+        try {
+            return userService.selectByName(name);
         }   finally {
             lock.unlock();
         }

@@ -1,5 +1,10 @@
 package com.example.springbootproject.service;
 
+import com.example.springbootproject.entity.User2Entity;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 /**
  * ////////////////////////////////////////////////////////////////////
  * //                          _ooOoo_                               //
@@ -42,4 +47,6 @@ public interface UserService {
     int setUser(String name);
 
     int setUser2(String name);
+
+    List<User2Entity> selectByName(String name);
 }

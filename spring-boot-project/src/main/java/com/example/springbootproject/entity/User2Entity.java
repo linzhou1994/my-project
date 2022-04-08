@@ -1,7 +1,6 @@
-package com.example.springbootproject.mapper;
+package com.example.springbootproject.entity;
 
-import com.example.springbootproject.entity.User2Entity;
-import com.example.springbootproject.entity.UserEntity;import org.apache.ibatis.annotations.Param;import java.util.List;
+import lombok.Data;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -36,28 +35,12 @@ import com.example.springbootproject.entity.UserEntity;import org.apache.ibatis.
  * //                 不见满街漂亮妹，哪个归得程序员?                      //
  * ////////////////////////////////////////////////////////////////////
  *
- * @date : 2022/3/10 20:52
+ * @date : 2022/4/8 16:25
  * @author: linzhou
- * @description : UserMapper
+ * @description : User2Entigy
  */
-public interface UserMapper {
-    int deleteByPrimaryKey(Long id);
+@Data
+public class User2Entity {
 
-    int insert(UserEntity record);
-
-    int insertSelective(UserEntity record);
-
-    UserEntity selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(UserEntity record);
-
-    int updateByPrimaryKey(UserEntity record);
-
-    List<UserEntity> selectByName1(@Param("name") String name);
-
-
-    List<User2Entity> selectByName(@Param("name") String name);
-
-
-
+    private Long idd;
 }

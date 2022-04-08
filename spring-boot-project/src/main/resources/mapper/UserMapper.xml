@@ -71,4 +71,14 @@
     </where>
   </select>
 
+  <select id="selectByName" resultMap="BaseResultMap">
+    select
+    id as idd
+    from `user`
+    <where>
+      <if test="name != null">
+        and `name`=#{name,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
 </mapper>

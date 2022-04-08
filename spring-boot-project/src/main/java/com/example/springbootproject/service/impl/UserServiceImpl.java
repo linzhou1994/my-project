@@ -1,11 +1,14 @@
 package com.example.springbootproject.service.impl;
 
+import com.example.springbootproject.entity.User2Entity;
 import com.example.springbootproject.entity.UserEntity;
 import com.example.springbootproject.mapper.UserMapper;
 import com.example.springbootproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -65,5 +68,10 @@ public class UserServiceImpl implements UserService {
         userMapper.insert(userEntity);
 
         throw new NullPointerException();
+    }
+
+    @Override
+    public List<User2Entity> selectByName(String name) {
+        return userMapper.selectByName(name);
     }
 }
