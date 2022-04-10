@@ -1,18 +1,9 @@
-package com.example.springbootproject.controller;
+package com.example.biztool.importdata.test;
 
-import com.example.springbootproject.entity.User2Entity;
-import com.example.springbootproject.entity.UserEntity;
-import com.example.springbootproject.mapper.UserMapper;
-import com.example.springbootproject.service.UserService;
-import org.redisson.api.RLock;
-import org.redisson.api.RedissonClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import com.example.biztool.importdata.DefaultAbstractImportDataHandler;
+import com.example.biztool.importdata.ImportDataContext;
+import com.example.biztool.importdata.ImportTypeEnum;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -49,49 +40,29 @@ import java.util.List;
  * //                 不见满街漂亮妹，哪个归得程序员?                      //
  * ////////////////////////////////////////////////////////////////////
  *
- * @date : 2022/3/10 20:33
+ * @date : 2022/4/10 20:07
  * @author: linzhou
- * @description : UserController
+ * @description : TestImportDataHandler
  */
-@RestController
-@RequestMapping("user")
-public class UserController {
+@Service
+public class TestImportDataHandler extends DefaultAbstractImportDataHandler<TestImportData> {
 
-    @Autowired
-    private RedissonClient redissonClient;
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    @Override
+    public void doImportData(ImportDataContext context, List<TestImportData> dataList) {
 
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private UserMapper userMapper;
-
-    @RequestMapping("set")
-    public int setUser(@RequestParam("name") String name) {
-
-        return userService.setUser(name);
-    }
-    @RequestMapping("set2")
-    public int setUser2(String name) {
-        RLock lock = redissonClient.getLock("123456");
-        lock.lock();
-        try {
-            return userService.setUser(name);
-        }   finally {
-            lock.unlock();
+        for (TestImportData testImportData : dataList) {
+            System.out.println(testImportData.toString());
         }
     }
-    @RequestMapping("getByName")
-    public List<Long> getByName(@RequestParam("name")String name) {
-        RLock lock = redissonClient.getLock("123456");
-        lock.lock();
-        try {
-            return userService.selectByName(name);
-        }   finally {
-            lock.unlock();
-        }
+
+    @Override
+    protected String getExportTemplateFilePath() {
+        return null;
+    }
+
+    @Override
+    public ImportTypeEnum getType() {
+        return ImportTypeEnum.TEST;
     }
 }

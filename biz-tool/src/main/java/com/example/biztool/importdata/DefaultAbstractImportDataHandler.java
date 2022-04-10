@@ -1,20 +1,8 @@
-package com.example.springbootproject.controller;
+package com.example.biztool.importdata;
 
-import com.example.springbootproject.entity.User2Entity;
-import com.example.springbootproject.entity.UserEntity;
-import com.example.springbootproject.mapper.UserMapper;
-import com.example.springbootproject.service.UserService;
-import org.redisson.api.RLock;
-import org.redisson.api.RedissonClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import java.util.List;
+import java.io.File;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -49,49 +37,47 @@ import java.util.List;
  * //                 不见满街漂亮妹，哪个归得程序员?                      //
  * ////////////////////////////////////////////////////////////////////
  *
- * @date : 2022/3/10 20:33
+ * @date : 2022/4/10 19:59
  * @author: linzhou
- * @description : UserController
+ * @description : DefaultAbstractImportDataHandler
  */
-@RestController
-@RequestMapping("user")
-public class UserController {
+public abstract class DefaultAbstractImportDataHandler<T extends BaseImportData>  extends AbstractImportDataHandler<ImportRecord, T> {
 
-    @Autowired
-    private RedissonClient redissonClient;
-
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private UserMapper userMapper;
-
-    @RequestMapping("set")
-    public int setUser(@RequestParam("name") String name) {
-
-        return userService.setUser(name);
+    /**
+     * 获取导入数据包装类对象
+     *
+     * @return
+     */
+    @Override
+    protected Class<T> getImportDataClass() {
+        Type genericSuperclass1 = getClass().getGenericSuperclass();
+        ParameterizedType genericSuperclass = (ParameterizedType) genericSuperclass1;
+        Type[] actualTypeArguments = genericSuperclass.getActualTypeArguments();
+        return (Class<T>) actualTypeArguments[0];
     }
-    @RequestMapping("set2")
-    public int setUser2(String name) {
-        RLock lock = redissonClient.getLock("123456");
-        lock.lock();
-        try {
-            return userService.setUser(name);
-        }   finally {
-            lock.unlock();
-        }
+
+    /**
+     * 获取导入记录类对象
+     *
+     * @return
+     */
+    @Override
+    protected Class getImportRecordClass() {
+        return ImportRecord.class;
     }
-    @RequestMapping("getByName")
-    public List<Long> getByName(@RequestParam("name")String name) {
-        RLock lock = redissonClient.getLock("123456");
-        lock.lock();
-        try {
-            return userService.selectByName(name);
-        }   finally {
-            lock.unlock();
-        }
+
+    @Override
+    protected Long saveImportRecord(ImportDataContext context, ImportRecord importRecord) {
+        importRecord.setId(1L);
+        return importRecord.getId();
+    }
+
+    @Override
+    protected String uploadFailFile(File errorFile) {
+        return "null";
+    }
+
+    @Override
+    protected void updateImportRecord(ImportRecord importRecord) {
     }
 }

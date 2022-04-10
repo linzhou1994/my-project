@@ -71,9 +71,9 @@
     </where>
   </select>
 
-  <select id="selectByName" resultMap="BaseResultMap">
+  <select id="selectByName" resultType="long">
     select
-    id as idd
+    id
     from `user`
     <where>
       <if test="name != null">

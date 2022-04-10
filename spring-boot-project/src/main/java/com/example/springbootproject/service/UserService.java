@@ -48,5 +48,5 @@ public interface UserService {
 
     int setUser2(String name);
 
-    List<User2Entity> selectByName(String name);
+    List<Long> selectByName(String name);
 }

@@ -56,7 +56,7 @@ public interface UserMapper {
     List<UserEntity> selectByName1(@Param("name") String name);
 
 
-    List<User2Entity> selectByName(@Param("name") String name);
+    List<Long> selectByName(@Param("name") String name);
 
 
 

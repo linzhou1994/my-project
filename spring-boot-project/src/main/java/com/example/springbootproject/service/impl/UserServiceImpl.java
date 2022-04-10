@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User2Entity> selectByName(String name) {
+    public List<Long> selectByName(String name) {
         return userMapper.selectByName(name);
     }
 }
