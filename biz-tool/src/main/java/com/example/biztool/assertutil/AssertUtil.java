@@ -45,19 +45,19 @@ public class AssertUtil {
         isTrue(o == null, code, org);
     }
 
-    public static void isNotEmpty(Collection c, ErrorCode code, Object... org) throws BizException {
+    public static void isNotEmpty(Collection<?> c, ErrorCode code, Object... org) throws BizException {
         isTrue(CollectionUtils.isNotEmpty(c), code, org);
     }
 
-    public static void isEmpty(Collection c, ErrorCode code, Object... org) throws BizException {
+    public static void isEmpty(Collection<?> c, ErrorCode code, Object... org) throws BizException {
         isTrue(CollectionUtils.isEmpty(c), code, org);
     }
 
-    public static void isMapNotEmpty(Map m, ErrorCode code, Object... org) throws BizException {
+    public static void isNotEmpty(Map<?,?> m, ErrorCode code, Object... org) throws BizException {
         isTrue(m != null && !m.isEmpty(), code, org);
     }
 
-    public static void isMapEmpty(Map m, ErrorCode code, Object... org) throws BizException {
+    public static void isEmpty(Map<?,?> m, ErrorCode code, Object... org) throws BizException {
         isTrue(m == null || m.isEmpty(), code, org);
     }
 
