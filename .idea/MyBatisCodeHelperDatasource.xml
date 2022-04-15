@@ -22,6 +22,7 @@
         <option name="javaModelPackage" value="com.example.springbootproject.entity" />
         <option name="javaModelPath" value="$PROJECT_DIR$/spring-boot-project/src/main/java" />
         <option name="lastDatabaseCrudChooseModuleName" value="spring-boot-project" />
+        <option name="mapperSuperClass" value="com.example.biztool.annotations.AnnotationUtil" />
         <option name="moduleNameToPackageAndPathMap">
           <map>
             <entry key="spring-boot-project">
@@ -42,7 +43,35 @@
             </entry>
           </map>
         </option>
-
+        <option name="p3CComment" value="true" />
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="test:table_name">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="" />
+                  <option name="javaModelName" value="TableName" />
+                  <option name="moduleName" value="spring-boot-project" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="test:user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="User" />
+                  <option name="moduleName" value="spring-boot-project" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
         <option name="userMybatisPlus" value="true" />
         <option name="xmlMapperPackage" value="mapper" />
         <option name="xmlMapperPath" value="$PROJECT_DIR$/spring-boot-project/src/main/resources" />
