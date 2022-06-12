@@ -40,8 +40,8 @@ public abstract class AbstractImportDataHandler<E extends ImportRecord, T extend
      */
     protected static final Integer NOT_BATCH_SIZE = 0;
 //
-//    @Autowired
-//    private ImportDataHandlerManage importDataHandlerManage;
+    @Autowired
+    private ImportDataHandlerManage importDataHandlerManage;
 
 
     /**
@@ -105,8 +105,7 @@ public abstract class AbstractImportDataHandler<E extends ImportRecord, T extend
             //如果批量处理数量小于0,则一次处理完,不分批
             batchSize = context.getTotalNum();
         }
-//        AbstractImportDataHandler importDataHandler = (AbstractImportDataHandler) importDataHandlerManage.getImportDataHandler(context.getTypeEnum());
-        AbstractImportDataHandler<E,T> importDataHandler = this;
+        AbstractImportDataHandler importDataHandler = (AbstractImportDataHandler) importDataHandlerManage.getImportDataHandler(context.getTypeEnum());
 
         //分批处理导入数据
         ListSubIterator<T> ls = new ListSubIterator<>(dataList, batchSize);
