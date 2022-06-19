@@ -1,5 +1,9 @@
 package com.example.springbootproject;
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
+import co.elastic.clients.elasticsearch.indices.GetIndexResponse;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         classes = SpringBootProjectApplication.class)
 @AutoConfigureMockMvc
-class SpringBootProjectApplicationTests {
+public class SpringBootProjectApplicationTests {
 
     @Autowired
     DataSourceTransactionManager dataSourceTransactionManager;
@@ -29,6 +34,7 @@ class SpringBootProjectApplicationTests {
     TransactionDefinition transactionDefinition;
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
 
     @Test
     @Rollback(false)
@@ -52,5 +58,9 @@ class SpringBootProjectApplicationTests {
         System.out.println(operations.get());
 
     }
+
+
+
+
 
 }
