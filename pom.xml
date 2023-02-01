@@ -13,6 +13,7 @@
         <module>spring-boot-project</module>
         <module>spring-boot-dubbo</module>
         <module>biz-tool</module>
+        <module>spring-boot-es</module>
     </modules>
 
 
