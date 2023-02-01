@@ -1,9 +1,11 @@
 package guava.collections;
 
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.SetMultimap;
+import com.google.common.collect.Table;
 
 /**
  * @author linzhou
@@ -17,4 +19,14 @@ public class MultiCollectionsTest {
 
     private static SetMultimap<String,String> setMultimap = HashMultimap.create();
 
+    private static Table<Class<?>, Class<?>, String> paramClass2ReturnClass2convertors = HashBasedTable.create();
+
+    public static void main(String[] args) {
+        Object[] bytes = new Byte[]{'1','2','3',' '};
+        for (Object aByte : bytes) {
+            boolean b = aByte instanceof Number;
+            System.out.println("输出"+ b);
+        }
+
+    }
 }
