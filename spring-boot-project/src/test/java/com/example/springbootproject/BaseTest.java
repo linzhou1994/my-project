@@ -1,13 +1,9 @@
-package com.example.springbootproject.config;
+package com.example.springbootproject;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
-import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -42,20 +38,14 @@ import org.springframework.context.annotation.Configuration;
  * //                 不见满街漂亮妹，哪个归得程序员?                      //
  * ////////////////////////////////////////////////////////////////////
  *
- * @date : 2022/6/19 14:40
+ * @date : 2023/3/4 16:44
  * @author: linzhou
- * @description : EsConfig
+ * @description : BaseTest
  */
-
-@Configuration
-public class EsConfig {
-
-    //注入IOC容器
-//    @Bean
-//    public ElasticsearchClient elasticsearchClient(){
-//        RestClient client = RestClient.builder(new HttpHost("www.linzhou.link", 9200,"http")).build();
-//        ElasticsearchTransport transport = new RestClientTransport(client,new JacksonJsonpMapper());
-//        return new ElasticsearchClient(transport);
-//
-//    }
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        classes = SpringBootProjectApplication.class)
+@AutoConfigureMockMvc
+public class BaseTest {
 }

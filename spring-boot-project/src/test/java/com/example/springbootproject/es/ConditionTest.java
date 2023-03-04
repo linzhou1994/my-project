@@ -1,13 +1,10 @@
-package com.example.springbootproject.config;
+package com.example.springbootproject.es;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
-import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import com.example.springbootproject.BaseTest;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+
+import javax.annotation.Resource;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -42,20 +39,18 @@ import org.springframework.context.annotation.Configuration;
  * //                 不见满街漂亮妹，哪个归得程序员?                      //
  * ////////////////////////////////////////////////////////////////////
  *
- * @date : 2022/6/19 14:40
+ * @date : 2023/3/4 16:43
  * @author: linzhou
- * @description : EsConfig
+ * @description : Condition
  */
+public class ConditionTest extends BaseTest {
 
-@Configuration
-public class EsConfig {
+    @Resource
+    private ApplicationContext context;
+    @Test
+    public void testDev(){
 
-    //注入IOC容器
-//    @Bean
-//    public ElasticsearchClient elasticsearchClient(){
-//        RestClient client = RestClient.builder(new HttpHost("www.linzhou.link", 9200,"http")).build();
-//        ElasticsearchTransport transport = new RestClientTransport(client,new JacksonJsonpMapper());
-//        return new ElasticsearchClient(transport);
-//
-//    }
+//        context.getBean()
+
+    }
 }

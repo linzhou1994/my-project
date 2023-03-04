@@ -1,13 +1,9 @@
-package com.example.springbootproject.config;
+package com.example.springbootproject.condition;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
-import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Condition;
+import org.springframework.context.annotation.ConditionContext;
+import org.springframework.core.env.Environment;
+import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -42,20 +38,17 @@ import org.springframework.context.annotation.Configuration;
  * //                 不见满街漂亮妹，哪个归得程序员?                      //
  * ////////////////////////////////////////////////////////////////////
  *
- * @date : 2022/6/19 14:40
+ * @date : 2023/3/4 16:40
  * @author: linzhou
- * @description : EsConfig
+ * @description : DevCondition
  */
+public class DevCondition implements Condition {
+    @Override
+    public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
 
-@Configuration
-public class EsConfig {
+        Environment environment = context.getEnvironment();
+        String property = environment.getProperty("spring.profiles.active");
 
-    //注入IOC容器
-//    @Bean
-//    public ElasticsearchClient elasticsearchClient(){
-//        RestClient client = RestClient.builder(new HttpHost("www.linzhou.link", 9200,"http")).build();
-//        ElasticsearchTransport transport = new RestClientTransport(client,new JacksonJsonpMapper());
-//        return new ElasticsearchClient(transport);
-//
-//    }
+        return "dev".equals(property);
+    }
 }
