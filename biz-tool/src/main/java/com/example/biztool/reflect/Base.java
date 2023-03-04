@@ -61,4 +61,13 @@ public class Base implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public static void main(String[] args) {
+        int sun = 0;
+        for (int i = 0; i <= 13; i++) {
+            sun+=i;
+
+        }
+        System.out.println(sun);
+    }
 }
