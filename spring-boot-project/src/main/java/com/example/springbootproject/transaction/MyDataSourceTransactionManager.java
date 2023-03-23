@@ -1,6 +1,8 @@
 package com.example.springbootproject.transaction;
 
+import com.example.springbootproject.condition.DevCondition;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.support.DefaultTransactionStatus;
@@ -14,6 +16,7 @@ import javax.sql.DataSource;
  * @Description
  */
 @Component
+@Conditional(DevCondition.class)
 @Slf4j
 public class MyDataSourceTransactionManager extends DataSourceTransactionManager {
 

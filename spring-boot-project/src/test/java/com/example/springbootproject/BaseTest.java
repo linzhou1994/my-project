@@ -1,9 +1,9 @@
-package com.example.biztool.reflect;
+package com.example.springbootproject;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
-
-import java.io.Serializable;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -38,36 +38,14 @@ import java.io.Serializable;
  * //                 不见满街漂亮妹，哪个归得程序员?                      //
  * ////////////////////////////////////////////////////////////////////
  *
- * @date : 2022/4/26 13:49
+ * @date : 2023/3/4 16:44
  * @author: linzhou
- * @description : Base
+ * @description : BaseTest
  */
-public class Base implements Serializable {
-    private Long id;
-    private String name;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public static void main(String[] args) {
-        int sun = 0;
-        for (int i = 0; i <= 13; i++) {
-            sun+=i;
-
-        }
-        System.out.println(sun);
-    }
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        classes = SpringBootProjectApplication.class)
+@AutoConfigureMockMvc
+public class BaseTest {
 }

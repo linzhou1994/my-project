@@ -1,9 +1,9 @@
-package com.example.biztool.reflect;
+package com.example.springbootproject.condition;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
-
-import java.io.Serializable;
+import org.springframework.context.annotation.Condition;
+import org.springframework.context.annotation.ConditionContext;
+import org.springframework.core.env.Environment;
+import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -38,36 +38,17 @@ import java.io.Serializable;
  * //                 不见满街漂亮妹，哪个归得程序员?                      //
  * ////////////////////////////////////////////////////////////////////
  *
- * @date : 2022/4/26 13:49
+ * @date : 2023/3/4 16:40
  * @author: linzhou
- * @description : Base
+ * @description : DevCondition
  */
-public class Base implements Serializable {
-    private Long id;
-    private String name;
+public class DevCondition implements Condition {
+    @Override
+    public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
 
-    public Long getId() {
-        return id;
-    }
+        Environment environment = context.getEnvironment();
+        String property = environment.getProperty("spring.profiles.active");
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public static void main(String[] args) {
-        int sun = 0;
-        for (int i = 0; i <= 13; i++) {
-            sun+=i;
-
-        }
-        System.out.println(sun);
+        return "dev".equals(property);
     }
 }

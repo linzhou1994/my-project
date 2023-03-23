@@ -4,10 +4,18 @@ import com.example.springbootproject.entity.User2Entity;
 import com.example.springbootproject.entity.UserEntity;
 import com.example.springbootproject.mapper.UserMapper;
 import com.example.springbootproject.service.UserService;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.List;
 
 /**
@@ -48,9 +56,32 @@ import java.util.List;
  * @description : UserServiceImpl
  */
 @Service
-public class UserServiceImpl implements UserService {
+@Log4j2
+public class UserServiceImpl implements UserService , InitializingBean, DisposableBean {
     @Autowired
     private UserMapper userMapper;
+
+    @PostConstruct
+    public void postConstruct(){
+        log.info("UserServiceImpl----->postConstruct");
+    }
+
+
+    @PreDestroy
+    public void preDestroy(){
+        log.info("UserServiceImpl----->preDestroy");
+    }
+
+
+    @Override
+    public void destroy() throws Exception {
+        log.info("UserServiceImpl----->DisposableBean.destroy");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        log.info("UserServiceImpl----->InitializingBean.afterPropertiesSet");
+    }
 
     @Override
     @Transactional
@@ -74,4 +105,5 @@ public class UserServiceImpl implements UserService {
     public List<Long> selectByName(String name) {
         return userMapper.selectByName(name);
     }
+
 }

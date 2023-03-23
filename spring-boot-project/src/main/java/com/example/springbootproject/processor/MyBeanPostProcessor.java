@@ -1,9 +1,9 @@
-package com.example.biztool.reflect;
+package com.example.springbootproject.processor;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
-
-import java.io.Serializable;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.stereotype.Component;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -38,36 +38,24 @@ import java.io.Serializable;
  * //                 不见满街漂亮妹，哪个归得程序员?                      //
  * ////////////////////////////////////////////////////////////////////
  *
- * @date : 2022/4/26 13:49
+ * @date : 2023/3/4 18:30
  * @author: linzhou
- * @description : Base
+ * @description : MyBeanPostProcessor
  */
-public class Base implements Serializable {
-    private Long id;
-    private String name;
+@Component
+@Log4j2
+public class MyBeanPostProcessor implements BeanPostProcessor {
 
-    public Long getId() {
-        return id;
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        log.info(beanName+"----->BeanPostProcessor.postProcessBeforeInitialization");
+        return BeanPostProcessor.super.postProcessBeforeInitialization(bean, beanName);
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        log.info(beanName+"----->BeanPostProcessor.postProcessAfterInitialization");
+        return BeanPostProcessor.super.postProcessAfterInitialization(bean, beanName);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public static void main(String[] args) {
-        int sun = 0;
-        for (int i = 0; i <= 13; i++) {
-            sun+=i;
-
-        }
-        System.out.println(sun);
-    }
 }

@@ -1,9 +1,8 @@
-package com.example.biztool.reflect;
+package com.example.springbootproject.condition;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
-
-import java.io.Serializable;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
+import org.springframework.core.type.AnnotationMetadata;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -38,36 +37,15 @@ import java.io.Serializable;
  * //                 不见满街漂亮妹，哪个归得程序员?                      //
  * ////////////////////////////////////////////////////////////////////
  *
- * @date : 2022/4/26 13:49
+ * @date : 2023/3/4 17:17
  * @author: linzhou
- * @description : Base
+ * @description : MyImportBeanDefinitionRegistrar
  */
-public class Base implements Serializable {
-    private Long id;
-    private String name;
+public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public static void main(String[] args) {
-        int sun = 0;
-        for (int i = 0; i <= 13; i++) {
-            sun+=i;
-
-        }
-        System.out.println(sun);
+    @Override
+    public void registerBeanDefinitions(
+            AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
+        ImportBeanDefinitionRegistrar.super.registerBeanDefinitions(importingClassMetadata, registry);
     }
 }

@@ -1,9 +1,10 @@
-package com.example.biztool.reflect;
+package com.example.springbootproject.es;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
+import com.example.springbootproject.BaseTest;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
 
-import java.io.Serializable;
+import javax.annotation.Resource;
 
 /**
  * ////////////////////////////////////////////////////////////////////
@@ -38,36 +39,18 @@ import java.io.Serializable;
  * //                 不见满街漂亮妹，哪个归得程序员?                      //
  * ////////////////////////////////////////////////////////////////////
  *
- * @date : 2022/4/26 13:49
+ * @date : 2023/3/4 16:43
  * @author: linzhou
- * @description : Base
+ * @description : Condition
  */
-public class Base implements Serializable {
-    private Long id;
-    private String name;
+public class ConditionTest extends BaseTest {
 
-    public Long getId() {
-        return id;
-    }
+    @Resource
+    private ApplicationContext context;
+    @Test
+    public void testDev(){
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//        context.getBean()
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public static void main(String[] args) {
-        int sun = 0;
-        for (int i = 0; i <= 13; i++) {
-            sun+=i;
-
-        }
-        System.out.println(sun);
     }
 }
