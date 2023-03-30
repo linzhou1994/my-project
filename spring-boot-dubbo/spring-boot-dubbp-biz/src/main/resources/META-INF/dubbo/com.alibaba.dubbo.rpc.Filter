@@ -1,1 +1,3 @@
 dubboLogFilter=com.example.springbootdubbpbiz.filter.DubboTraceInfoAttachmentFilter
+# 服务提供者端的dubbo配置文件
+dubbo.registry.service = com.example.springbootdubbpbiz.registry.MyZookeeperRegistry

@@ -1,6 +1,6 @@
 
 server:
-  port: 8088 #Tomcat??
+  port: 8080 #Tomcat??
 spring:
   dubbo:
     application:
@@ -8,6 +8,7 @@ spring:
     registry:
       address: zookeeper://124.221.168.242 #zookeeper??
       port: 2181 #???????
+      registry-type: com.example.springbootdubbpbiz.registry.MyZookeeperRegistryFactory
     protocol:
       name: dubbo
       port: 20890 #dubbo???????
@@ -16,3 +17,6 @@ spring:
 
     provider:
       filter: dubboLogFilter
+
+dubbo:
+  env: dev

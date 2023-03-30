@@ -2,8 +2,11 @@ package com.example.springbootdubbpbiz.remoteapi.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.example.springbootdubboapi.remotepai.RemoteDubboTestService;
+import com.example.springbootdubbpbiz.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * @author linzhou
@@ -12,9 +15,11 @@ import org.springframework.stereotype.Component;
  * @Description
  */
 @Slf4j
-@Service
+@Service()
 @Component
 public class RemoteDubboTestServiceImpl implements RemoteDubboTestService {
+    @Resource
+    private SpringUtil springUtil;
     @Override
     public String dubboTest(String str) {
         log.info("dubboTest:{}", str);

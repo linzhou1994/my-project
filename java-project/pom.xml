@@ -41,6 +41,18 @@
             <groupId>com.example</groupId>
             <artifactId>biz-tool</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>easyexcel</artifactId>
+                    <groupId>com.alibaba</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- 阿里开源EXCEL -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>3.1.2</version>
         </dependency>
     </dependencies>
 
