@@ -23,6 +23,10 @@ public class MyZookeeperRegistryFactory  extends AbstractRegistryFactory {
 
     private ZookeeperTransporter zookeeperTransporter;
 
+    public MyZookeeperRegistryFactory() {
+        int i=0;
+    }
+
     public void setZookeeperTransporter(ZookeeperTransporter zookeeperTransporter) {
         this.zookeeperTransporter = zookeeperTransporter;
     }

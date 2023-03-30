@@ -5,6 +5,7 @@ import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.registry.zookeeper.ZookeeperRegistry;
 import com.alibaba.dubbo.remoting.zookeeper.ZookeeperTransporter;
 import com.example.springbootdubbpbiz.config.DubboConfig;
+import com.example.springbootdubbpbiz.util.PropertyUtil;
 import com.example.springbootdubbpbiz.util.SpringUtil;
 import org.springframework.beans.BeanUtils;
 
@@ -30,8 +31,9 @@ public class MyZookeeperRegistry extends ZookeeperRegistry {
     @Override
     public void register(URL url) {
         DubboConfig config = SpringUtil.getBean(DubboConfig.class);
+        String property = PropertyUtil.getProperty("dubbo.env");
         // 获取自定义参数
-        String customParam = config.getEvn();
+        String customParam = property;
         // 将自定义参数添加到服务提供者的URL中
         if (StringUtils.isNotEmpty(customParam)) {
             url = url.addParameter("customParam", customParam);

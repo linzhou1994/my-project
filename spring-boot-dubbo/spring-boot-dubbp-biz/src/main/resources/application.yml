@@ -8,7 +8,7 @@ spring:
     registry:
       address: zookeeper://124.221.168.242 #zookeeper??
       port: 2181 #???????
-      registry-type: com.example.springbootdubbpbiz.registry.MyZookeeperRegistryFactory
+      registry-type: zookeeperRegistryFactory
     protocol:
       name: dubbo
       port: 20890 #dubbo???????

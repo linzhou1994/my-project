@@ -19,5 +19,5 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "dubbo")
 public class DubboConfig {
-    private String evn;
+    private String env;
 }
