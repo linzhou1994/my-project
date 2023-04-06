@@ -1,6 +1,5 @@
 package easy.excel;
 
-import com.alibaba.excel.EasyExcel;
 import easy.excel.converter.ImageConverter;
 import org.apache.poi.hssf.usermodel.HSSFPicture;
 import org.apache.poi.hssf.usermodel.HSSFPictureData;
@@ -15,6 +14,7 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFDrawing;
 import org.apache.poi.xssf.usermodel.XSSFPicture;
+import org.apache.poi.xssf.usermodel.XSSFPictureData;
 import org.apache.poi.xssf.usermodel.XSSFShape;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -94,7 +94,8 @@ public class EasyExcelTest {
                         List<XSSFShape> shapes = pic.getShapes();
                         for (XSSFShape shape : shapes) {
                             XSSFPicture picture = (XSSFPicture) shape;
-                            byte[] data = picture.getPictureData().getData();
+                            XSSFPictureData pictureData = picture.getPictureData();
+                            byte[] data = pictureData.getData();
                             FileOutputStream out = new FileOutputStream(imageFilePath + "excel07_" + (++i) + ".jpg");
                             out.write(data);
                             out.close();
