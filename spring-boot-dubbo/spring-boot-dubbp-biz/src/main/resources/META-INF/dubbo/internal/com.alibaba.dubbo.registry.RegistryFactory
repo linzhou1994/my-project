@@ -1,4 +1,4 @@
 dubbo=com.alibaba.dubbo.registry.dubbo.DubboRegistryFactory
 multicast=com.alibaba.dubbo.registry.multicast.MulticastRegistryFactory
-zookeeper=com.example.springbootdubbpbiz.registry.MyZookeeperRegistryFactory
+zookeeper=com.alibaba.dubbo.registry.zookeeper.ZookeeperRegistryFactory,com.example.springbootdubbpbiz.registry.MyZookeeperRegistryFactory
 redis=com.alibaba.dubbo.registry.redis.RedisRegistryFactory
