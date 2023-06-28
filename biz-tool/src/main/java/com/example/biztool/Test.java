@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * CopyRight : <company domain>
@@ -34,6 +35,8 @@ public class Test {
     private Boolean needAuth;
     @JsonProperty("routes")
     private List<RoutesDTO> routes;
+
+    ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 1, null, null);
 
     public static void main(String[] args) {
 
