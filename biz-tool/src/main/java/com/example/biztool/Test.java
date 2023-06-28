@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
 
 /**
  * CopyRight : <company domain>
@@ -36,9 +36,13 @@ public class Test {
     @JsonProperty("routes")
     private List<RoutesDTO> routes;
 
-    ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 1, null, null);
-
     public static void main(String[] args) {
+
+
+        ExecutorService threadPoolExecutor = new ThreadPoolExecutor(0, 1,
+                0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>());
+
 
         Test test = JSON.parseObject(getJson(), Test.class);
 
